@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Regressiva: Foz do Iguaçu</title>
+    <style>
+        /* Reset básico e configurações de fonte */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* Fundo animado em CSS puro: Cores de pôr do sol e céu azul (Garante 100% de funcionamento) */
+            background: linear-gradient(-45deg, #ff7e5f, #feb47b, #00b4db, #0083b0);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            padding: 1rem;
+        }
+
+        /* Animação do fundo de tela */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Container principal com efeito Glassmorphism (vidro fosco) */
+        .container {
+            background: rgba(0, 0, 0, 0.3); /* Fundo um pouco mais escuro para dar contraste com o céu */
+            padding: 2.5rem 1rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+            max-width: 700px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+        }
+
+        h2 {
+            color: #81ecec;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Layout da contagem regressiva responsivo para celulares */
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .time-box {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 1rem 0.2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .time-box:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .time-box span {
+            display: block;
+            font-size: clamp(1.5rem, 6vw, 3.5rem);
+            font-weight: 700;
+            background: -webkit-linear-gradient(#81ecec, #00cec9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .time-box .label {
+            font-size: clamp(0.55rem, 2vw, 0.85rem);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+            color: #dfe6e9;
+        }
+
+        .destinations {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            font-weight: 500;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+        }
+
+        /* Animação de entrada */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mensagem de sucesso quando a viagem chegar */
+        .success-message {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            color: #00cec9;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+            grid-column: span 4;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>A Grande Viagem! ✈️</h1>
+        <h2>Preparem as malas. A aventura começa em:</h2>
+        
+        <div class="countdown" id="countdown-container">
+            <div class="time-box">
+                <span id="days">00</span>
+                <div class="label">Dias</div>
+            </div>
+            <div class="time-box">
+                <span id="hours">00</span>
+                <div class="label">Horas</div>
+            </div>
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <div class="label">Minutos</div>
+            </div>
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <div class="label">Segundos</div>
+            </div>
+        </div>
+
+        <div class="destinations">
+            <span class="badge">🇧🇷 Foz do Iguaçu</span>
+            <span class="badge">🇵🇾 Paraguai</span>
+            <span class="badge">🇦🇷 Argentina</span>
+        </div>
+    </div>
+
+    <script>
+        // Data alvo da viagem: 30 de Abril de 2026 às 03:05:00
+        // Formato ISO 8601 (Garante máxima compatibilidade com iOS/Safari)
+        const tripDate = new Date("2026-04-30T03:05:00").getTime();
+
+        // Elementos do DOM
+        const daysEl = document.getElementById("days");
+        const hoursEl = document.getElementById("hours");
+        const minutesEl = document.getElementById("minutes");
+        const secondsEl = document.getElementById("seconds");
+        const countdownContainer = document.getElementById("countdown-container");
+
+        // Função para formatar números com zero à esquerda
+        const formatTime = (time) => time < 10 ? `0${time}` : time;
+
+        // Atualizador principal a cada 1 segundo (1000ms)
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = tripDate - now;
+
+            // Cálculos de tempo precisos
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Atualiza a interface
+            daysEl.innerText = formatTime(days);
+            hoursEl.innerText = formatTime(hours);
+            minutesEl.innerText = formatTime(minutes);
+            secondsEl.innerText = formatTime(seconds);
+
+            // Verifica se a data já chegou
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                countdownContainer.innerHTML = `<div class="success-message">Chegou a hora! Boa viagem! 🎉🎒🌎</div>`;
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
