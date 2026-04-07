@@ -332,8 +332,10 @@
                 const response = await fetch('https://economia.awesomeapi.com.br/last/USD-BRL');
                 const data = await response.json();
                 
-                // Extrai o valor de compra atual ("bid")
-                exchangeRate = parseFloat(data.USDBRL.bid);
+                // Extrai o valor de compra atual ("bid") e trava em exatas 2 casas decimais
+                // Isso evita que valores como 5.1645 causem arredondamentos confusos na conta final.
+                const rawRate = parseFloat(data.USDBRL.bid);
+                exchangeRate = parseFloat(rawRate.toFixed(2));
                 
                 // Atualiza a tela com o valor da cotação
                 currentRateDisplay.innerText = `Cotação Atual: US$ 1,00 = ${formatBRL(exchangeRate)}`;
