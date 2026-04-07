@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            /* Fundo animado em CSS puro: Cores de pôr do sol e céu azul (Garante 100% de funcionamento) */
+            /* Fundo animado em CSS puro: Cores de pôr do sol e céu azul */
             background: linear-gradient(-45deg, #ff7e5f, #feb47b, #00b4db, #0083b0);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
@@ -25,8 +25,8 @@
             align-items: center;
             min-height: 100vh;
             text-align: center;
-            overflow: hidden;
-            padding: 1rem;
+            overflow-x: hidden;
+            padding: 2rem 1rem;
         }
 
         /* Animação do fundo de tela */
@@ -38,7 +38,7 @@
 
         /* Container principal com efeito Glassmorphism (vidro fosco) */
         .container {
-            background: rgba(0, 0, 0, 0.3); /* Fundo um pouco mais escuro para dar contraste com o céu */
+            background: rgba(0, 0, 0, 0.3);
             padding: 2.5rem 1rem;
             border-radius: 20px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
@@ -48,6 +48,7 @@
             width: 100%;
             max-width: 700px;
             animation: fadeIn 1.5s ease-out;
+            margin-bottom: 2rem;
         }
 
         h1 {
@@ -127,13 +128,93 @@
             backdrop-filter: blur(4px);
         }
 
+        /* --- SESSÃO DO CONVERSOR DE MOEDAS --- */
+        .converter-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+        }
+
+        .converter-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .rate-display {
+            font-size: 0.95rem;
+            color: #81ecec;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            background: rgba(0,0,0,0.4);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 15px;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .input-group span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00cec9;
+        }
+
+        .converter-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-size: 1.5rem;
+            color: #ffffff;
+            width: 150px;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .converter-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .converter-input:focus {
+            border-color: #00cec9;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .converter-input::-webkit-outer-spin-button,
+        .converter-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .converter-input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .result-display {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffeaa7; /* Cor amarelada para destaque do valor em Reais */
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+            margin-top: 10px;
+            min-height: 48px;
+        }
+
         /* Animação de entrada */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Mensagem de sucesso quando a viagem chegar */
         .success-message {
             font-size: clamp(1.5rem, 5vw, 2.5rem);
             color: #00cec9;
@@ -180,46 +261,109 @@
             <span class="badge">🇵🇾 Paraguai</span>
             <span class="badge">🇦🇷 Argentina</span>
         </div>
+
+        <!-- Nova Seção: Conversor de Moedas -->
+        <div class="converter-section">
+            <h3>💱 Conversor Dólar/Real</h3>
+            <div class="rate-display" id="current-rate">Buscando cotação em tempo real...</div>
+            
+            <div class="input-group">
+                <span>US$</span>
+                <input type="number" id="usd-input" class="converter-input" placeholder="0.00" min="0" step="0.01">
+            </div>
+            
+            <div class="result-display" id="brl-result">R$ 0,00</div>
+        </div>
     </div>
 
     <script>
-        // Data alvo da viagem: 30 de Abril de 2026 às 03:05:00
-        // Formato ISO 8601 (Garante máxima compatibilidade com iOS/Safari)
-        const tripDate = new Date("2026-04-30T03:05:00").getTime();
+        /* -----------------------------------------------------------
+           LÓGICA DA CONTAGEM REGRESSIVA
+        ----------------------------------------------------------- */
+        // Formato com barras para evitar erro no iPhone/Safari
+        const tripDate = new Date("2026/04/30 03:05:00").getTime();
 
-        // Elementos do DOM
         const daysEl = document.getElementById("days");
         const hoursEl = document.getElementById("hours");
         const minutesEl = document.getElementById("minutes");
         const secondsEl = document.getElementById("seconds");
         const countdownContainer = document.getElementById("countdown-container");
 
-        // Função para formatar números com zero à esquerda
         const formatTime = (time) => time < 10 ? `0${time}` : time;
 
-        // Atualizador principal a cada 1 segundo (1000ms)
         const countdownInterval = setInterval(() => {
             const now = new Date().getTime();
             const distance = tripDate - now;
 
-            // Cálculos de tempo precisos
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Atualiza a interface
             daysEl.innerText = formatTime(days);
             hoursEl.innerText = formatTime(hours);
             minutesEl.innerText = formatTime(minutes);
             secondsEl.innerText = formatTime(seconds);
 
-            // Verifica se a data já chegou
             if (distance < 0) {
                 clearInterval(countdownInterval);
                 countdownContainer.innerHTML = `<div class="success-message">Chegou a hora! Boa viagem! 🎉🎒🌎</div>`;
             }
         }, 1000);
+
+
+        /* -----------------------------------------------------------
+           LÓGICA DO CONVERSOR DE MOEDAS
+        ----------------------------------------------------------- */
+        const usdInput = document.getElementById("usd-input");
+        const brlResult = document.getElementById("brl-result");
+        const currentRateDisplay = document.getElementById("current-rate");
+        
+        let exchangeRate = 0; // Armazena a cotação atual
+
+        // Função para formatar o valor em moeda Brasileira (R$)
+        const formatBRL = (value) => {
+            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+        };
+
+        // Busca a cotação do Dólar na AwesomeAPI (Pública e Gratuita)
+        async function fetchExchangeRate() {
+            try {
+                const response = await fetch('https://economia.awesomeapi.com.br/last/USD-BRL');
+                const data = await response.json();
+                
+                // Extrai o valor de compra atual ("bid")
+                exchangeRate = parseFloat(data.USDBRL.bid);
+                
+                // Atualiza a tela com o valor da cotação
+                currentRateDisplay.innerText = `Cotação Atual: US$ 1,00 = ${formatBRL(exchangeRate)}`;
+                
+                // Se já houver algo digitado, recalcula com a nova taxa
+                calculateConversion();
+            } catch (error) {
+                console.error("Erro ao buscar cotação:", error);
+                currentRateDisplay.innerText = "⚠️ Erro ao buscar cotação (Verifique sua internet)";
+            }
+        }
+
+        // Calcula e exibe o valor convertido
+        function calculateConversion() {
+            // Pega o valor digitado. Se estiver vazio ou inválido, considera 0.
+            const usdValue = parseFloat(usdInput.value) || 0;
+            const brlValue = usdValue * exchangeRate;
+            
+            brlResult.innerText = formatBRL(brlValue);
+        }
+
+        // Fica "escutando" a digitação. Toda vez que o usuário digitar ou apagar um número, calcula na hora.
+        usdInput.addEventListener("input", calculateConversion);
+
+        // Assim que a página abre, busca a cotação imediatamente.
+        fetchExchangeRate();
+
+        // Atualiza a cotação automaticamente a cada 5 minutos (300000 ms)
+        setInterval(fetchExchangeRate, 300000);
+
     </script>
 </body>
 </html>
