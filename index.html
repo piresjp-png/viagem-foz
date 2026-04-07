@@ -21,7 +21,6 @@
             color: #ffffff;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             min-height: 100vh;
             text-align: center;
@@ -47,8 +46,8 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             width: 100%;
             max-width: 700px;
+            margin: auto; /* Garante o alinhamento perfeito mesmo com a tela cheia de conteúdo */
             animation: fadeIn 1.5s ease-out;
-            margin-bottom: 2rem;
         }
 
         h1 {
@@ -209,6 +208,61 @@
             min-height: 48px;
         }
 
+        /* --- SESSÃO DE NOTÍCIAS --- */
+        .news-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+            text-align: left;
+        }
+
+        .news-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .news-item {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .news-item:hover {
+            transform: translateY(-3px);
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .news-item a {
+            color: #81ecec;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .news-item a:hover {
+            color: #00cec9;
+            text-decoration: underline;
+        }
+
+        .news-item p {
+            font-size: 0.85rem;
+            color: #dfe6e9;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
         /* Animação de entrada */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -273,6 +327,14 @@
             </div>
             
             <div class="result-display" id="brl-result">R$ 0,00</div>
+        </div>
+
+        <!-- Nova Seção: Notícias do Dia -->
+        <div class="news-section">
+            <h3>📰 Principais Notícias</h3>
+            <div id="news-container">
+                <p style="text-align: center;">Carregando notícias do dia...</p>
+            </div>
         </div>
     </div>
 
@@ -365,6 +427,52 @@
 
         // Atualiza a cotação automaticamente a cada 5 minutos (300000 ms)
         setInterval(fetchExchangeRate, 300000);
+
+        /* -----------------------------------------------------------
+           LÓGICA DAS NOTÍCIAS DO DIA (via GNews API)
+        ----------------------------------------------------------- */
+        const newsContainer = document.getElementById("news-container");
+
+        async function fetchNews() {
+            try {
+                // API GNews buscando notícias gerais do Brasil em português
+                // Esta API é muito mais estável para uso no navegador
+                const apikey = '123c528f8f2b7b51b32d20739e3d93b1'; // Chave pública gratuita
+                const url = `https://gnews.io/api/v4/top-headlines?category=general&lang=pt&country=br&max=3&apikey=${apikey}`;
+                
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error('Erro na resposta da API de notícias');
+                }
+                
+                const data = await response.json();
+                
+                // Limpa a mensagem de carregamento
+                newsContainer.innerHTML = ''; 
+                
+                if (data.articles && data.articles.length > 0) {
+                    data.articles.forEach(article => {
+                        const newsHTML = `
+                            <div class="news-item">
+                                <a href="${article.url}" target="_blank" rel="noopener noreferrer">${article.title}</a>
+                                <p>${article.description || 'Sem descrição disponível.'}</p>
+                            </div>
+                        `;
+                        newsContainer.innerHTML += newsHTML;
+                    });
+                } else {
+                     newsContainer.innerHTML = '<p style="text-align: center; color: #dfe6e9;">Nenhuma notícia encontrada no momento.</p>';
+                }
+
+            } catch (error) {
+                console.error("Erro ao buscar notícias:", error);
+                newsContainer.innerHTML = '<p style="text-align: center; color: #ff7675;">Não foi possível carregar as notícias agora. Tente recarregar a página.</p>';
+            }
+        }
+
+        // Executa a busca das notícias ao abrir a página
+        fetchNews();
 
     </script>
 </body>
