@@ -127,6 +127,122 @@
             backdrop-filter: blur(4px);
         }
 
+        /* --- SESSÃO DO VOO (CARTÃO DE EMBARQUE) --- */
+        .flight-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+        }
+
+        .flight-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .boarding-pass {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            position: relative;
+            margin: 0 auto;
+            max-width: 500px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .flight-route {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .airport {
+            text-align: center;
+            flex: 1;
+        }
+
+        .airport .code {
+            display: block;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #00cec9;
+            letter-spacing: 2px;
+        }
+
+        .airport .city {
+            font-size: 0.85rem;
+            color: #dfe6e9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .plane-icon {
+            font-size: 2rem;
+            flex: 0.5;
+            color: #ffeaa7;
+            animation: fly 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes fly {
+            from { transform: translateX(-10px) translateY(2px); }
+            to { transform: translateX(10px) translateY(-2px); }
+        }
+
+        .flight-details {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            text-align: center;
+        }
+
+        .detail span {
+            font-size: 0.75rem;
+            color: #a8b2d1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .detail strong {
+            font-size: 1.1rem;
+            color: #ffffff;
+        }
+
+        /* Novo estilo para o botão de status ao vivo */
+        .status-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background: rgba(0, 206, 201, 0.15);
+            border: 1px solid #00cec9;
+            color: #00cec9;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .status-btn:hover {
+            background: #00cec9;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 500px) {
+            .flight-details {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+
         /* --- SESSÃO DO CONVERSOR DE MOEDAS --- */
         .converter-section {
             margin-top: 3rem;
@@ -314,6 +430,79 @@
             <span class="badge">🇧🇷 Foz do Iguaçu</span>
             <span class="badge">🇵🇾 Paraguai</span>
             <span class="badge">🇦🇷 Argentina</span>
+        </div>
+
+        <!-- Nova Seção: Informações dos Voos -->
+        <div class="flight-section">
+            <h3>✈️ Os Nossos Voos</h3>
+            
+            <!-- Voo 1: Origem para Conexão -->
+            <div class="boarding-pass" style="margin-bottom: 20px;">
+                <div class="flight-route">
+                    <div class="airport">
+                        <span class="code">FOR</span>
+                        <span class="city">Fortaleza</span>
+                    </div>
+                    <div class="plane-icon">✈️</div>
+                    <div class="airport">
+                        <span class="code">GRU</span>
+                        <span class="city">São Paulo</span>
+                    </div>
+                </div>
+                <div class="flight-details">
+                    <div class="detail">
+                        <span>Voo</span>
+                        <strong>G31559</strong>
+                    </div>
+                    <div class="detail">
+                        <span>Data</span>
+                        <strong>30/04</strong>
+                    </div>
+                    <div class="detail">
+                        <span>Embarque</span>
+                        <strong>03:05</strong>
+                    </div>
+                    <div class="detail">
+                        <span>Portão</span>
+                        <strong>A def.</strong>
+                    </div>
+                </div>
+                <a href="https://www.google.com/search?q=status+do+voo+G31559" target="_blank" class="status-btn">📡 Verificar Status ao Vivo</a>
+            </div>
+
+            <!-- Voo 2: Conexão para Destino -->
+            <div class="boarding-pass">
+                <div class="flight-route">
+                    <div class="airport">
+                        <span class="code">GRU</span>
+                        <span class="city">São Paulo</span>
+                    </div>
+                    <div class="plane-icon">✈️</div>
+                    <div class="airport">
+                        <span class="code">IGU</span>
+                        <span class="city">Foz do Iguaçu</span>
+                    </div>
+                </div>
+                <div class="flight-details">
+                    <div class="detail">
+                        <span>Voo</span>
+                        <strong>G31178</strong>
+                    </div>
+                    <div class="detail">
+                        <span>Data</span>
+                        <strong>30/04</strong>
+                    </div>
+                    <div class="detail">
+                        <span>Embarque</span>
+                        <strong>08:50</strong>
+                    </div>
+                    <div class="detail">
+                        <span>Portão</span>
+                        <strong>A def.</strong>
+                    </div>
+                </div>
+                <a href="https://www.google.com/search?q=status+do+voo+G31178" target="_blank" class="status-btn">📡 Verificar Status ao Vivo</a>
+            </div>
         </div>
 
         <!-- Nova Seção: Conversor de Moedas -->
