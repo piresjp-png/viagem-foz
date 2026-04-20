@@ -359,6 +359,83 @@
             }
         }
 
+        /* --- SESSÃO DA PROGRAMAÇÃO (ITINERÁRIO) --- */
+        .schedule-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+        }
+
+        .schedule-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .schedule-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .schedule-day {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .day-header {
+            font-size: 1.2rem;
+            color: #00cec9;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        .schedule-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .schedule-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .schedule-time {
+            font-weight: bold;
+            color: #ffeaa7;
+            min-width: 55px;
+            font-size: 0.95rem;
+            padding-top: 2px;
+        }
+
+        .schedule-activity {
+            flex: 1;
+        }
+
+        .schedule-activity strong {
+            display: block;
+            color: #ffffff;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+
+        .schedule-activity span {
+            color: #dfe6e9;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            display: block;
+        }
+
         /* --- SESSÃO DE CLIMA (WEATHER) --- */
         .weather-section {
             margin-top: 3rem;
@@ -679,6 +756,262 @@
                 <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Amazonas+939+Campos+do+Iguaçu,+Foz+do+Iguaçu,+Paraná+85857,+Brasil" target="_blank" class="map-btn">
                     🗺️ Como chegar? (Abrir Maps)
                 </a>
+            </div>
+        </div>
+
+        <!-- Nova Seção: Programação -->
+        <div class="schedule-section">
+            <h3>📅 Programação da Viagem</h3>
+            
+            <div class="schedule-timeline">
+                
+                <!-- Dia 1 -->
+                <div class="schedule-day">
+                    <div class="day-header">Dia 30/04 (Qui): Chegada, Argentina + Marco</div>
+                    
+                    <div class="schedule-item">
+                        <div class="schedule-time">03:00</div>
+                        <div class="schedule-activity">
+                            <strong>Saída do voo de Fortaleza</strong>
+                            <span>Início da jornada!</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">10:30</div>
+                        <div class="schedule-activity">
+                            <strong>Chegada e Check-in</strong>
+                            <span>Rua Amazonas</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">12:00</div>
+                        <div class="schedule-activity">
+                            <strong>Almoço</strong>
+                            <span>Shopping Palladium Foz</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">13:30</div>
+                        <div class="schedule-activity">
+                            <strong>Saída para Argentina 🇦🇷</strong>
+                            <span>Pela fronteira</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">14:00</div>
+                        <div class="schedule-activity">
+                            <strong>Duty Free Shop Puerto Iguazú</strong>
+                            <span>Foco: Perfumes e Bebidas</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">15:00</div>
+                        <div class="schedule-activity">
+                            <strong>Visita à Vinícola</strong>
+                            <span>Degustações e compras</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">16:00</div>
+                        <div class="schedule-activity">
+                            <strong>Marco das Três Fronteiras</strong>
+                            <span>Lado Argentino</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">17:00</div>
+                        <div class="schedule-activity">
+                            <strong>Feirinha de Puerto Iguazú</strong>
+                            <span>Vinhos, doce de leite, chocolates, azeite e alfajores</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">20:00</div>
+                        <div class="schedule-activity">
+                            <strong>Jantar: Yabuticaba ⭐ PRIME</strong>
+                            <span>Sobremesa na Berry’s (Melhor sorveteria do mundo! ⭐ PRIME). Obs: Sair antes das 22:00 para evitar trânsito.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dia 2 -->
+                <div class="schedule-day">
+                    <div class="day-header">Dia 01/05 (Sex): Natureza e Aventura</div>
+                    
+                    <div class="schedule-item">
+                        <div class="schedule-time">04:40</div>
+                        <div class="schedule-activity">
+                            <strong>Despertar</strong>
+                            <span>Hora de acordar cedo!</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">05:00</div>
+                        <div class="schedule-activity">
+                            <strong>Saída da Hospedagem</strong>
+                            <span>Transporte Loumar</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">05:30</div>
+                        <div class="schedule-activity">
+                            <strong>Amanhecer nas Cataratas</strong>
+                            <span>Entrada no Parque Nacional</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">08:00</div>
+                        <div class="schedule-activity">
+                            <strong>Café da Manhã</strong>
+                            <span>Incluso no passeio ou no local</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">09:30</div>
+                        <div class="schedule-activity">
+                            <strong>Macuco Safari 🚤</strong>
+                            <span>Aventura de barco nas quedas d'água</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">12:00</div>
+                        <div class="schedule-activity">
+                            <strong>Almoço: Rest. dos Barreiros ⭐ PRIME</strong>
+                            <span>Pausa para recarregar as energias</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">14:00</div>
+                        <div class="schedule-activity">
+                            <strong>Retorno e Mercantil (Lanches)</strong>
+                            <span>Comprar: Pão, queijo, ovo, presunto, café, açúcar, sal, leite, refrigerante.</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">16:30</div>
+                        <div class="schedule-activity">
+                            <strong>Tarde Livre</strong>
+                            <span>Sugestão: Rua Coberta para fotos</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">20:00</div>
+                        <div class="schedule-activity">
+                            <strong>Jantar em Foz</strong>
+                            <span>70’s Brunch</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dia 3 -->
+                <div class="schedule-day">
+                    <div class="day-header">Dia 02/05 (Sáb): Compras Paraguai 🛍️</div>
+                    
+                    <div class="schedule-item">
+                        <div class="schedule-time">07:00</div>
+                        <div class="schedule-activity">
+                            <strong>Saída da Hospedagem</strong>
+                            <span>Van do Seu Daniel</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">08:00</div>
+                        <div class="schedule-activity">
+                            <strong>Ciudad del Este (CDE)</strong>
+                            <span>Início das compras!</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">12:30</div>
+                        <div class="schedule-activity">
+                            <strong>Almoço em CDE</strong>
+                            <span>"Sabe Deus onde e que horas" 😂</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">16:00</div>
+                        <div class="schedule-activity">
+                            <strong>Retorno para Foz</strong>
+                            <span>Antecipado para evitar o pico de trânsito na ponte</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">19:30</div>
+                        <div class="schedule-activity">
+                            <strong>Jantar: La Toscana ⭐ PRIME</strong>
+                            <span>Noite especial</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dia 4 -->
+                <div class="schedule-day">
+                    <div class="day-header">Dia 03/05 (Dom): Dia Livre + Yup Star</div>
+                    
+                    <div class="schedule-item">
+                        <div class="schedule-time">09:00</div>
+                        <div class="schedule-activity">
+                            <strong>Manhã Livre</strong>
+                            <span>Ou retorno ao Paraguai para itens faltantes</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">12:30</div>
+                        <div class="schedule-activity">
+                            <strong>Almoço: Vivóm Cucina ⭐ PRIME</strong>
+                            <span>Gastronomia em Foz</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">16:30</div>
+                        <div class="schedule-activity">
+                            <strong>Saída para Yup Star 🎡</strong>
+                            <span>Roda Gigante de Foz</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">17:30</div>
+                        <div class="schedule-activity">
+                            <strong>Pôr do sol na Roda Gigante</strong>
+                            <span>Vista 360° incrível</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">20:00</div>
+                        <div class="schedule-activity">
+                            <strong>Jantar: Dom Garcia Rodizio ⭐ PRIME</strong>
+                            <span>Despedida em grande estilo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dia 5 -->
+                <div class="schedule-day">
+                    <div class="day-header">Dia 04/05 (Seg): Retorno ✈️</div>
+                    
+                    <div class="schedule-item">
+                        <div class="schedule-time">09:00</div>
+                        <div class="schedule-activity">
+                            <strong>Organização Final</strong>
+                            <span>Arrumar as malas e as compras</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">12:00</div>
+                        <div class="schedule-activity">
+                            <strong>Check-out e Aeroporto</strong>
+                            <span>Transfer Ida/Volta. Almoço na Sala Vip do aeroporto.</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">20:00</div>
+                        <div class="schedule-activity">
+                            <strong>Voo de Retorno</strong>
+                            <span>Rumo a Fortaleza</span>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
 
