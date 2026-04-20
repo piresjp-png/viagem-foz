@@ -243,6 +243,122 @@
             }
         }
 
+        /* --- SESSÃO DA HOSPEDAGEM --- */
+        .hosting-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+        }
+
+        .hosting-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .hosting-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            margin: 0 auto;
+            max-width: 500px;
+            text-align: left;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .hosting-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hosting-icon {
+            font-size: 2rem;
+            color: #ffeaa7;
+        }
+
+        .hosting-title {
+            flex: 1;
+        }
+
+        .hosting-title strong {
+            display: block;
+            font-size: 1.2rem;
+            color: #00cec9;
+        }
+
+        .hosting-title span {
+            font-size: 0.85rem;
+            color: #dfe6e9;
+        }
+
+        .hosting-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .h-detail span {
+            display: block;
+            font-size: 0.75rem;
+            color: #a8b2d1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .h-detail strong {
+            font-size: 0.95rem;
+            color: #ffffff;
+        }
+
+        .hosting-address {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: #dfe6e9;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .map-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            padding: 10px;
+            background: #00cec9;
+            color: #000;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .map-btn:hover {
+            background: #81ecec;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 206, 201, 0.3);
+        }
+
+        @media (max-width: 500px) {
+            .hosting-details {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+
         /* --- SESSÃO DE CLIMA (WEATHER) --- */
         .weather-section {
             margin-top: 3rem;
@@ -397,61 +513,6 @@
             border-bottom-color: #ffffff;
         }
 
-        /* --- SESSÃO DE NOTÍCIAS --- */
-        .news-section {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            width: 100%;
-            text-align: left;
-        }
-
-        .news-section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: #ffffff;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .news-item {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.2s, background 0.2s;
-        }
-
-        .news-item:hover {
-            transform: translateY(-3px);
-            background: rgba(0, 0, 0, 0.6);
-        }
-
-        .news-item a {
-            color: #81ecec;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.05rem;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .news-item a:hover {
-            color: #00cec9;
-            text-decoration: underline;
-        }
-
-        .news-item p {
-            font-size: 0.85rem;
-            color: #dfe6e9;
-            line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
         /* Animação de entrada */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -578,6 +639,49 @@
             </div>
         </div>
 
+        <!-- Nova Seção: Hospedagem -->
+        <div class="hosting-section">
+            <h3>🏠 A Nossa Hospedagem</h3>
+            
+            <div class="hosting-card">
+                <div class="hosting-header">
+                    <div class="hosting-icon">🏡</div>
+                    <div class="hosting-title">
+                        <strong>Casa da Lettice Aparecida</strong>
+                        <span>📞 55 45 99158-1764</span>
+                    </div>
+                </div>
+                
+                <div class="hosting-details">
+                    <div class="h-detail">
+                        <span>Check-in</span>
+                        <strong>30 de abr., 15:00</strong>
+                    </div>
+                    <div class="h-detail">
+                        <span>Check-out</span>
+                        <strong>4 de mai.</strong>
+                    </div>
+                    <div class="h-detail">
+                        <span>Período</span>
+                        <strong>4 noites</strong>
+                    </div>
+                    <div class="h-detail">
+                        <span>Confirmação</span>
+                        <strong>HM2CPK8A8D</strong>
+                    </div>
+                </div>
+                
+                <div class="hosting-address">
+                    📍 Rua Amazonas 939, Campos do Iguaçu<br>
+                    Foz do Iguaçu, Paraná 85857, Brasil
+                </div>
+                
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Amazonas+939+Campos+do+Iguaçu,+Foz+do+Iguaçu,+Paraná+85857,+Brasil" target="_blank" class="map-btn">
+                    🗺️ Como chegar? (Abrir Maps)
+                </a>
+            </div>
+        </div>
+
         <!-- Nova Seção: Clima em Foz do Iguaçu -->
         <div class="weather-section">
             <h3>⛅ Clima em Foz do Iguaçu</h3>
@@ -607,14 +711,6 @@
             <a href="https://mobile.comprasparaguai.com.br/" target="_blank" rel="noopener noreferrer" class="compras-py-link">
                 🛍️ Consultar cotação nas lojas do Paraguai (Compras Paraguai)
             </a>
-        </div>
-
-        <!-- Nova Seção: Notícias do Dia -->
-        <div class="news-section">
-            <h3>📰 Principais Notícias</h3>
-            <div id="news-container">
-                <p style="text-align: center;">Carregando notícias do dia...</p>
-            </div>
         </div>
     </div>
 
@@ -769,61 +865,6 @@
 
         // Atualiza a cotação automaticamente a cada 5 minutos (300000 ms)
         setInterval(fetchExchangeRate, 300000);
-
-        /* -----------------------------------------------------------
-           LÓGICA DAS NOTÍCIAS (via Feed RSS G1 - Principais Notícias)
-        ----------------------------------------------------------- */
-        const newsContainer = document.getElementById("news-container");
-
-        async function fetchNews() {
-            try {
-                // Utilizando a API rss2json para ler o feed RSS oficial das principais notícias (Home) do G1.
-                // Isso garante as notícias mais relevantes do momento no Brasil.
-                const rssUrl = 'https://g1.globo.com/rss/g1/';
-                const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-                
-                const response = await fetch(apiUrl);
-                
-                if (!response.ok) {
-                    throw new Error('Erro na resposta do serviço de notícias');
-                }
-                
-                const data = await response.json();
-                
-                // Limpa a mensagem de carregamento
-                newsContainer.innerHTML = ''; 
-                
-                // Pega os 4 primeiros itens (notícias mais recentes)
-                if (data.items && data.items.length > 0) {
-                    const topNews = data.items.slice(0, 4);
-                    
-                    topNews.forEach(item => {
-                        // Limpa a descrição de tags HTML (como imagens embutidas no G1)
-                        let cleanDescription = item.description.replace(/<img[^>]*>/g, '');
-                        cleanDescription = cleanDescription.replace(/<[^>]*>?/gm, '');
-                        
-                        const newsHTML = `
-                            <div class="news-item">
-                                <a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a>
-                                <p>${cleanDescription.substring(0, 120)}...</p>
-                            </div>
-                        `;
-                        newsContainer.innerHTML += newsHTML;
-                    });
-                } else {
-                     newsContainer.innerHTML = '<p style="text-align: center; color: #dfe6e9;">Nenhuma notícia encontrada no momento.</p>';
-                }
-
-            } catch (error) {
-                console.error("Erro ao buscar notícias:", error);
-                newsContainer.innerHTML = '<p style="text-align: center; color: #ff7675;">Não foi possível carregar as notícias agora. Verifique a sua ligação.</p>';
-            }
-        }
-
-        // Executa a busca das notícias ao abrir a página
-        fetchNews();
-        // Atualiza as notícias a cada hora (3600000 ms)
-        setInterval(fetchNews, 3600000);
 
     </script>
 </body>
